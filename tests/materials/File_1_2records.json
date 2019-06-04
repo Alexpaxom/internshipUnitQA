@@ -1,0 +1,14 @@
+{
+    "logs": [
+        {
+            "time": "946684810",
+            "test": "Test output A",
+            "output": "fail"
+        },
+		{
+            "time": "952905600",
+            "test": "Test output C",
+            "output": "success"
+        }
+    ]
+}
