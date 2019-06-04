@@ -20,7 +20,12 @@ class FFParser:
             return result
 
         for test_log in file_data['logs']:
-            result.update(self.__parse_test_log(test_log))
+            test = self.__parse_test_log(test_log)
+            # if there are no duplicate keys
+            if len(test.keys() & result.keys()) == 0:
+                result.update(test)
+            else:
+                raise KeyError('Two tests have the same "time". We cannot distinguish them.')
 
         return result
 

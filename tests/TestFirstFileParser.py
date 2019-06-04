@@ -11,7 +11,7 @@ class TestFirstFileParser(unittest.TestCase):
 
     def test_correct_files(self):
         # TEST
-        json_res = json.dumps(self.parser.parse('tests\materials\File_1_empty_json.json'), sort_keys=True)
+        json_res = json.dumps(self.parser.parse('tests\materials\File_empty_json.json'), sort_keys=True)
         json_expect = json.dumps({}, sort_keys=True)
         self.assertEqual(json_res, json_expect)
 
@@ -37,9 +37,13 @@ class TestFirstFileParser(unittest.TestCase):
 
         # TEST
         with self.assertRaises(json.decoder.JSONDecodeError):
-            self.parser.parse('tests\materials\File_1_empty.json')
+            self.parser.parse('tests\materials\File_empty.json')
 
         # TEST
         with self.assertRaises(KeyError):
             self.parser.parse('tests\materials\File_1_without_status_and_name.json')
+
+    def test_fail(self):
+        with self.assertRaises(KeyError):
+            self.parser.parse('tests\materials\File_1_fail_same_time.json')
 
