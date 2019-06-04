@@ -1,0 +1,31 @@
+{
+    "suites": [
+        {
+            "name": "suite1",
+            "tests": 1,
+            "cases": [
+                {
+                    "name": "Test output B",
+                    "errors": 0,
+                    "time": "Saturday, 01-Jan-00 00:00:20 UTC"
+                },
+				{
+                    "name": "Test output E",
+                    "errors": 0,
+                    "time": "Saturday, 01-Jan-00 00:00:21 UTC"
+                }
+            ]
+        },
+		{
+            "name": "suite2",
+            "tests": 1,
+            "cases": [
+                {
+                    "name": "Test output D",
+                    "errors": 1,
+                    "time": "Saturday, 01-Jan-00 00:00:20 UTC"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,8 @@
+{
+    "suites": [
+        {
+            "name": "suite1",
+            "tests": 1
+        }
+    ]
+}
