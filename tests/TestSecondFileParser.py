@@ -36,6 +36,11 @@ class TestSecondFileParser(unittest.TestCase):
         json_expect = json.dumps(res_expect, sort_keys=True)
         self.assertEqual(json_res, json_expect)
 
+        # TEST keys have int type
+        res = self.parser.parse('tests\materials\File_2_few_records.json')
+        for key in res:
+            self.assertTrue(isinstance(key, int))
+
 
     def test_exceptions(self):
         # TEST
@@ -51,6 +56,7 @@ class TestSecondFileParser(unittest.TestCase):
             self.parser.parse('tests\materials\File_2_without_status_and_name.json')
 
     def test_fail(self):
+        # TEST two tests have some "time" field and we cannot distinguish them
         with self.assertRaises(KeyError):
             self.parser.parse('tests\materials\File_2_fail_same_time.json')
 

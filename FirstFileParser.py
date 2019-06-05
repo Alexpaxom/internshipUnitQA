@@ -35,15 +35,16 @@ class FFParser:
 
         result = {}
 
-        result[test_log['time']] = {}
+        time = int(test_log['time'])
+        result[time] = {}
 
         if 'test' in test_log:
-            result[test_log['time']]['name'] = test_log['test']
+            result[time]['name'] = test_log['test']
         else:
             raise KeyError('Field \'test\' is required!')
 
         if 'output' in test_log:
-            result[test_log['time']]['status'] = test_log['output']
+            result[time]['status'] = test_log['output']
         else:
             raise KeyError('Field \'output\' is required!')
 
