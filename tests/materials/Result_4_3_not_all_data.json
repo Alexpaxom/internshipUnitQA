@@ -1,0 +1,32 @@
+[
+	{
+		"name": null,
+        "status": null,
+        "expected": "A",
+        "actual": "B"
+    },
+    {
+        "name": "Test output B",
+        "status": "errors: 0",
+        "expected": "B",
+        "actual": "B"
+    },
+    {
+        "name": "Test output E",
+        "status": "errors: 0",
+        "expected": "E",
+        "actual": "E"
+    },
+    {
+        "name": "Test output D",
+        "status": "errors: 1",
+        "expected": "D",
+        "actual": "B"
+    },
+    {
+        "name": null,
+        "status": null,
+        "expected": "C",
+        "actual": "C"
+    }
+]

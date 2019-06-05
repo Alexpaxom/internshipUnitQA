@@ -2,6 +2,7 @@ from datetime import datetime
 from datetime import timezone
 import json
 
+
 class SFParser:
     """Parser for second log file"""
 
