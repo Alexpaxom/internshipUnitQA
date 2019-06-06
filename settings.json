@@ -4,5 +4,8 @@
 		"schema_2": "schemas/SecondFileSchema.json",
 		"schema_3": "schemas/ThirdFileSchema.json",
 		"schema_res": "schemas/ResultFileSchema.json"
-	}
+	},
+	"logs": {
+		"path": "logs/log"
+	}	
 }
