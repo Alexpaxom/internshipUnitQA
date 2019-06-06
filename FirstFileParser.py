@@ -1,19 +1,31 @@
 import json
+from jsonschema import validate
+from jsonschema import FormatChecker
 
 
 class FFParser:
     """Parser for first log file"""
 
+    def __init__(self, **params):
+        if 'schema' in params:
+            self.schema = params['schema']
+            self.__validate = True
+        else:
+            self.__validate = False
+
+
     def parse(self, file_path, **params):
         result = {}
         with open(file_path) as file:
-            file_data = json.load(file)
-            result = self.parse_json(file_data)
+            result = self.parse_json(json.load(file), **params)
 
         return result
 
 
     def parse_json(self, file_data, **params):
+        if self.__validate:
+            self.__validate_json(file_data)
+
         result = {}
 
         if 'logs' not in file_data:
@@ -49,3 +61,6 @@ class FFParser:
             raise KeyError('Field \'output\' is required!')
 
         return result
+
+    def __validate_json(self, data, **params):
+            validate(data, schema=self.schema, format_checker=FormatChecker())

@@ -1,0 +1,58 @@
+{
+    "type": "object",
+    "properties": {
+        "suites": {
+			"type": "array",
+			"items": { 
+				"$ref": "#/definitions/suite"
+			},
+			"description": "Array of suites"
+		}
+    },
+	
+	
+	"definitions": {
+		"suite": {
+			"type": "object",
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Name of suite."
+				},
+				"tests": {
+					"type": "integer",
+					"minimum": 0,
+					"description": ""
+				},
+				"cases": {
+					"type": "array",
+					"items": { 
+						"$ref": "#/definitions/case"
+					},
+					"description": "Array of cases"
+				}
+			}
+		},
+		
+		"case": {
+			"type": "object",
+			"required": [ "name", "errors", "time" ],
+			"properties": {
+				"name": {
+					"type": "string",
+					"description": "Name of case."
+				},
+				"errors": {
+					"type": "integer",
+					"minimum": 0,
+					"description": "Count of errors or analog true(1)/false(0)"
+				},
+				"time": {
+					"type": "string",
+					"pattern": "^(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday){1}\\, \\d{2}-(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec){1}-\\d{2} \\d{2}:\\d{2}:\\d{2}( UTC|)$",
+					"description": "Count of errors or analog true(1)/false(0)"
+				}
+			}
+		}
+	}
+}

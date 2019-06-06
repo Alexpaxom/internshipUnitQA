@@ -1,21 +1,32 @@
 from datetime import datetime
 from datetime import timezone
+from jsonschema import validate
+from jsonschema import FormatChecker
 import json
 
 
 class SFParser:
     """Parser for second log file"""
 
+    def __init__(self, **params):
+        if 'schema' in params:
+            self.schema = params['schema']
+            self.__validate = True
+        else:
+            self.__validate = False
+
     def parse(self, file_path, **params):
         result = {}
         with open(file_path) as file:
-            file_data = json.load(file)
-            result = self.parse_json(file_data)
+            result = self.parse_json(json.load(file), **params)
 
         return result
 
 
     def parse_json(self, file_data, **params):
+        if self.__validate:
+            self.__validate_json(file_data)
+
         result = {}
 
         if 'suites' not in file_data:
@@ -67,3 +78,6 @@ class SFParser:
             raise KeyError('Field \'errors\' is required!')
 
         return result
+
+    def __validate_json(self, data, **params):
+        validate(data, schema=self.schema, format_checker=FormatChecker())

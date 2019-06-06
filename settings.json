@@ -1,11 +1,8 @@
 {
-	"log_path": {
-		"file_1": "tests/materials/File_1.json",
-		"file_2": "tests/materials/File_2.json",
-		"file_3": "tests/materials/File_3.json"
-	},
-	"result": {
-		"path": "tests/materials/",
-		"name": "res.json"
+	"schemas_path": {
+		"schema_1": "schemas/FirstFileSchema.json",
+		"schema_2": "schemas/SecondFileSchema.json",
+		"schema_3": "schemas/ThirdFileSchema.json",
+		"schema_res": "schemas/ResultFileSchema.json"
 	}
 }

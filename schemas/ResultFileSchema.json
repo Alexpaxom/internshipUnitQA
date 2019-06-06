@@ -1,0 +1,25 @@
+{
+	"type": "array",
+	"items": {
+		"type": "object",
+		"required": [ "name", "status"],
+		"properties": {
+			"name": {
+				"type": ["string", "null"],
+				"description": "Name of test"
+			},
+			"status": {
+				"type": ["string", "null"],
+				"description": "Status of test"
+			},
+			"expected": {
+				"type": "string",
+				"description": "Expected test value"
+			},
+			"actual": {
+				"type": "string",
+				"description": "Actual test value"
+			}
+		}
+	}
+}

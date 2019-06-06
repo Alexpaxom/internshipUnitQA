@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "captures": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/capture"
+			}
+		}
+	},
+	
+	
+	"definitions": {
+		"capture": {
+				"type": "object",
+				"required": [ "time", "expected", "actual" ],
+				"properties": {
+					"time": {
+						"type": "string",
+						"format": "date-time",
+						"description": "Time in format(RFC3339)."
+					},
+					"expected": {
+						"type": "string",
+						"description": "Expected test value"
+					},
+					"actual": {
+						"type": "string",
+						"description": "Actual test value"
+					}
+				}
+			}
+		}
+}

@@ -1,0 +1,34 @@
+{
+    "type": "object",
+    "properties": {
+        "logs": {
+			"type": "array",
+			"items": {
+				"$ref": "#/definitions/log"
+			}
+		}
+	},
+	
+	
+	"definitions": {
+		"log": {
+				"type": "object",
+				"required": [ "time", "test", "output" ],
+				"properties": {
+					"time": {
+						"type": "string",
+						"pattern": "^\\d+$",
+						"description": "Time in UNIX format(timestamp)."
+					},
+					"test": {
+						"type": "string",
+						"description": "Test name."
+					},
+					"tests": {
+						"type": "string",
+						"description": ""
+					}
+				}
+			}
+		}
+}
