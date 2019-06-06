@@ -1,6 +1,7 @@
 import unittest
 import json
 from SecondFileParser import SFParser
+import jsonschema
 
 
 class TestSecondFileParser(unittest.TestCase):
@@ -59,4 +60,25 @@ class TestSecondFileParser(unittest.TestCase):
         # TEST two tests have some "time" field and we cannot distinguish them
         with self.assertRaises(KeyError):
             self.parser.parse('tests\materials\File_2_fail_same_time.json')
+
+    def test_json_schema(self):
+        # TEST
+        with open('schemas/SecondFileSchema.json') as schema:
+            parser = SFParser(schema=json.load(schema))
+            json_res = json.dumps(parser.parse('tests\materials\File_empty_json.json'), sort_keys=True)
+            json_expect = json.dumps({}, sort_keys=True)
+            self.assertEqual(json_res, json_expect)
+
+        # TEST
+        with open('schemas/SecondFileSchema.json') as schema:
+            parser = SFParser(schema=json.load(schema))
+            json_res = json.dumps(parser.parse('tests\materials\File_2.json'), sort_keys=True)
+            json_expect = json.dumps({'946684820': {'name': 'Test output B', 'status': 'errors: 0'}}, sort_keys=True)
+            self.assertEqual(json_res, json_expect)
+
+        # TEST
+        with open('schemas/SecondFileSchema.json') as schema:
+            parser = SFParser(schema=json.load(schema))
+            with self.assertRaises(jsonschema.exceptions.ValidationError):
+                json.dumps(parser.parse('tests\materials\File_2_error_for_schema.json'), sort_keys=True)
 

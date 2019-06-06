@@ -1,0 +1,15 @@
+{
+    "suites": [
+        {
+            "name": "suite1",
+            "tests": 1,
+            "cases": [
+                {
+                    "name": 2,
+                    "errors": 0,
+                    "time": "Saturday, 01-Jan-00 00:00:20 UTC"
+                }
+            ]
+        }
+    ]
+}

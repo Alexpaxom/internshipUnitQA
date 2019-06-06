@@ -91,4 +91,14 @@ class TestLogAnalyzer(unittest.TestCase):
                                        file_2='tests\materials\File_2_fail_same_time.json',
                                        file_3='tests\materials\File_3_fail_same_time.json')
 
+    def test_json_schema(self):
+        # TEST
+        tests = self.log_analayzer.process(file_1='tests\materials\File_1.json',
+                                           file_2='tests\materials\File_2.json',
+                                           file_3='tests\materials\File_3.json',
+                                           schema_res='schemas\ResultFileSchema.json')
+        with open('tests\materials\Result_4_1.json') as file:
+            res_expect = json.load(file)
+        self.assertEqual(json.dumps(tests), json.dumps(res_expect))
+
 

@@ -1,5 +1,6 @@
 import unittest
 import json
+import jsonschema
 from ThirdFileParser import TFParser
 
 
@@ -60,4 +61,29 @@ class TestThirdFileParser(unittest.TestCase):
         # TEST two tests have some "time" field and we cannot distinguish them
         with self.assertRaises(KeyError):
             self.parser.parse('tests\materials\File_3_fail_same_time.json')
+
+    def test_json_schema(self):
+        # TEST
+        with open('schemas/ThirdFileSchema.json') as schema:
+            parser = TFParser(schema=json.load(schema))
+            json_res = json.dumps(parser.parse('tests\materials\File_empty_json.json'), sort_keys=True)
+            json_expect = json.dumps({}, sort_keys=True)
+            self.assertEqual(json_res, json_expect)
+
+        # TEST
+        with open('schemas/ThirdFileSchema.json') as schema:
+            parser = TFParser(schema=json.load(schema))
+            json_res = json.dumps(parser.parse('tests\materials\File_3.json'), sort_keys=True)
+            res_expect = {
+                '946684810': {'expected': 'A', 'actual': 'B'},
+                '946684820': {'expected': 'B', 'actual': 'B'}
+            }
+            json_expect = json.dumps(res_expect, sort_keys=True)
+            self.assertEqual(json_res, json_expect)
+
+        # TEST
+        with open('schemas/ThirdFileSchema.json') as schema:
+            parser = TFParser(schema=json.load(schema))
+            with self.assertRaises(jsonschema.exceptions.ValidationError):
+                json.dumps(parser.parse('tests\materials\File_3_error_for_schema.json'), sort_keys=True)
 
